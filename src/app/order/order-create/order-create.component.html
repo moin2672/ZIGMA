@@ -1,0 +1,163 @@
+<div class="container"> 
+  <!-- IS LOADING COMPONENT -->
+<div class="d-flex justify-content-center d-print-none" *ngIf="isLoading">
+<div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+</div>
+
+
+  <div class="mx-auto my-5 col-md-6">
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="form-floating mb-3">
+    <input
+      list="customerPhoneNos"
+      class="form-control"
+      formControlName="customerPhoneNo"
+      placeholder="Order Type"
+      id="customerPhoneNo"
+    />
+    <datalist id="customerPhoneNos">
+      <option *ngFor="let item of customerPhoneNos_list" [value]="item.customerPhoneNo">
+        {{ item.customerPhoneNo }}
+      </option>
+    </datalist>
+    <label for="customerPhoneNo" class="form-label">Customer Phone No</label>
+  </div>
+      <div class="form-floating mb-3">
+        <input
+          list="orderStatuss"
+          class="form-control"
+          formControlName="orderStatus"
+          placeholder="Order Type"
+          id="orderStatus"
+        />
+        <datalist id="orderStatuss">
+          <option *ngFor="let item of orderStatus_list" [value]="item.status">
+            {{ item.status }}
+          </option>
+        </datalist>
+        <label for="orderStatus" class="form-label">Order Status</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          list="orderTypes"
+          class="form-control"
+          formControlName="orderType"
+          placeholder="Order Type"
+          id="orderType"
+        />
+        <!-- {{orderType_list | json}} -->
+        <datalist id="orderTypes">
+          <option *ngFor="let item of orderType_list" [value]="item.type">
+            {{ item.type }}
+          </option>
+        </datalist>
+        <label for="orderType" class="form-label">Order Type</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="orderModelNo"
+          placeholder="Model No"
+        />
+        <label for="orderModelNo">Order Model No</label>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control"
+          formControlName="orderDescription"
+          rows="6"
+          placeholder="Order Description"
+        ></textarea>
+        <label for="orderDescription">Order Description</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="totalAmount"
+          placeholder="Total Amount"
+        />
+        <label for="totalAmount">Total Amount</label>
+      </div>
+
+      <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        formControlName="amountPaid"
+        placeholder="Amount Paid"
+      />
+      <label for="amountPaid">Amount Paid</label>
+    </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="amountPaidToday"
+          placeholder="Amount Paid Today"
+        />
+        <label for="amountPaidToday">Amount Paid Today</label>
+      </div>
+      <div class="form-floating mb-3">
+      <select class="form-control" formControlName="transactionType" id="transactionType">
+      <option>Cash</option>
+      <option>Card</option>
+      <option>netBanking</option>
+      <option>UPI</option>
+    </select>
+    <label for="transactionType">Transaction Type</label>
+    </div>
+   
+      <div class="row mb-3">
+        <div class="col-4 d-flex justify-content-center">
+          <div
+            *ngIf="imagePreview == ''"
+            class="text-center text-danger border rounded border-danger p-1"
+          >
+            No Image Selected
+          </div>
+          <div *ngIf="imagePreview != ''">
+            <img
+              class="rounded"
+              [src]="imagePreview"
+              height="90"
+              width="90"
+              alt=""
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-check-circle-fill text-success"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="col-8">
+        <input
+          type="file"
+          class="form-control"
+          formControlName="image"
+          (change)="onImagePicked($event)"
+        />
+      </div>
+      </div>
+
+      <button class="btn btn-primary">Save Order</button>
+      <a class="btn btn-danger mx-3" routerLink="/orders/list">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<!-- {{ this.orderForm.value | json }} -->

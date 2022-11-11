@@ -1,0 +1,117 @@
+<div class="container">
+<!-- IS LOADING COMPONENT -->
+<div class="d-flex justify-content-center d-print-none" *ngIf="isLoading">
+<div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+</div>
+
+  <div class="mx-auto my-5 col-md-6">
+  <form [formGroup]="modelForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="modelNo"
+        placeholder="*Model No"
+      />
+      <label for="modelNo">*Model No</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="modelName"
+        placeholder="Model No"
+      />
+      <label for="modelName">Model Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <textarea
+        class="form-control"
+        formControlName="modelDescription"
+        rows="6"
+        placeholder="Model Description"
+      ></textarea>
+      <label for="modelDescription">Model Description</label>
+    </div>
+    <div class="mx-3 mb-3 form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        formControlName="isAvailable"
+        id="isAvailable"
+      />
+      <label class="form-check-label" for="isAvailable"> Is Available </label>
+    </div>
+
+    <div formArrayName="list_of_images">
+      <div
+        *ngFor="
+          let lst_img of listOfImages().controls;
+          let image_index = index
+        "
+      >
+        <div [formGroupName]="image_index">
+          <div class="row mb-3">
+            <div class="col-4 d-flex justify-content-center">
+            <div *ngIf="getImagePreview(image_index)==''" class="text-center text-danger border rounded border-danger p-2" >No Image Selected</div>
+            <div  *ngIf="getImagePreview(image_index)!=''">
+              <img
+              class="rounded"
+                [src]="getImagePreview(image_index)"
+                height="90"
+                width="90"
+                alt=""
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-check-circle-fill text-success"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                />
+              </svg>
+            </div>
+            </div>
+            <div class="col-4">
+              <input
+                type="file"
+                class="form-control"
+                formControlName="image"
+                (change)="onImagePicked($event, image_index)"
+                accept="image/*"
+              />
+            </div>
+            <div class="col-4">
+              <button
+                class="btn btn-danger"
+                (click)="removeImage(image_index)"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-info mb-3 my-3"
+        (click)="addImage()"
+      >
+        Add Image
+      </button>
+    </div>
+
+    <button class="btn btn-primary">Save Model</button>
+    <a class="btn btn-danger mx-3" routerLink="/home">Cancel</a>
+  </form>
+</div>
+</div>
+
+<!-- {{ this.modelForm.value | json }} -->

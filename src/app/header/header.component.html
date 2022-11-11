@@ -1,0 +1,153 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-auto mb-0 h1" routerLink="/home">Z I G M A</a>
+  </div>
+  <div class="container-fluid">
+    <ul
+      class="
+        nav nav-pills nav-fill
+        p-1
+        small
+        bg-white
+        border
+        rounded-5
+        shadow-sm
+        mx-auto
+        mb-2 mb-lg-0
+      "
+    >
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          aria-current="page"
+          routerLink="/home"
+          routerLinkActive="active"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          routerLink="/shop"
+          routerLinkActive="active"
+          >About Us</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="!userIsAuthenticated"
+          routerLink="/login"
+          routerLinkActive="active"
+          >Login</a
+        >
+      </li>
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="!userIsAuthenticated"
+          routerLink="/signup"
+          routerLinkActive="active"
+          >Signup</a
+        >
+      </li>
+      -->
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="userIsAuthenticated"
+          routerLink="/status/new"
+          routerLinkActive="active"
+          >+ Status</a
+        >
+      </li> -->
+      <!-- <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="userIsAuthenticated"
+          routerLink="/type/new"
+          routerLinkActive="active"
+          >+ Type</a
+        >
+      </li> -->
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="userIsAuthenticated"
+          routerLink="/customer/list"
+          routerLinkActive="active"
+          >Customer</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="userIsAuthenticated"
+          routerLink="/orders/list"
+          routerLinkActive="active"
+          >Order</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5"
+          *ngIf="userIsAuthenticated"
+          routerLink="/status/list"
+          routerLinkActive="active"
+          >Status</a
+        >
+      </li>
+      <li class="nav-item">
+      <a
+        class="nav-link rounded-5"
+        *ngIf="userIsAuthenticated"
+        routerLink="/type/list"
+        routerLinkActive="active"
+        >Type</a
+      >
+    </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link rounded-5 dropdown-toggle"
+          *ngIf="userIsAuthenticated"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Settings
+        </a>
+        <ul class="dropdown-menu">
+          
+          <li>
+            <a
+              class="dropdown-item"
+              routerLink="/gdrive"
+              routerLinkActive="active"
+              >Gdrive Setting</a
+            >
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+          <a
+            class="dropdown-item"
+            routerLink="/reset"
+            routerLinkActive="active"
+            >Reset Password</a
+          >
+        </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link rounded-5 pointer"
+          *ngIf="userIsAuthenticated"
+          (click)="onLogout()"
+          >Logout</a
+        >
+      </li>
+
+    </ul>
+  </div>
+</nav>

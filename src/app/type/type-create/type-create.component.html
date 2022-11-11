@@ -1,0 +1,37 @@
+<div class="container">
+
+
+
+<div class="mx-auto my-5 col-md-6">
+
+<!-- IS LOADING COMPONENT -->
+  <div class="d-flex justify-content-center" *ngIf="isLoading">
+    <div class="spinner-border text-primary" role="type">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <form [formGroup]="typeForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="type"
+        placeholder="Type"
+      />
+      <label for="type">Type</label>
+    </div>
+
+    <button class="btn btn-primary">{{editMode? 'Update' : 'Add'}} Type</button>
+    <button class="btn btn-danger mx-3" [routerLink]="['/type/list']">Cancel</button>
+  </form>
+</div>
+<!-- {{ this.typeForm.value | json }} -->
+<!-- <hr>
+<app-type-list></app-type-list>
+<br>
+<hr> -->
+</div>
+
+
+

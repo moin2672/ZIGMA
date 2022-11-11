@@ -1,0 +1,35 @@
+<div class="container">
+
+<div class="mx-auto my-5 col-md-6">
+
+<!-- IS LOADING COMPONENT -->
+    <div class="d-flex justify-content-center" *ngIf="isLoading">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <form [formGroup]="statusForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="status"
+          placeholder="Status"
+        />
+        <label for="status">Status</label>
+      </div>
+
+      <button class="btn btn-primary">{{editMode? 'Update' : 'Add'}} Status</button>
+      <button class="btn btn-danger mx-3" routerLink="/status/list">Cancel</button>
+    </form>
+  </div>
+  <!-- {{ this.statusForm.value | json }} -->
+  <!-- <hr>
+  <app-status-list></app-status-list>
+  <br>
+  <hr> -->
+</div>
+
+
+

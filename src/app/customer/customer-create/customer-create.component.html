@@ -1,0 +1,49 @@
+<div class="container">
+ <!-- LOADING COMPONENT -->
+ <div class="d-flex justify-content-center" *ngIf="isLoading">
+ <div class="spinner-border text-primary" role="status">
+   <span class="visually-hidden">Loading...</span>
+ </div>
+</div>
+
+  <div class="mx-auto my-5 col-md-6">
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="customerName"
+        placeholder="*Customer Name"
+      />
+      <label for="customerName">*Customer Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <!-- <input
+        type="tel"
+        class="form-control"
+        formControlName="customerPhoneNo"
+        placeholder="Customer Phone No"
+        pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}"
+      /> -->
+      <input
+        type="tel"
+        class="form-control"
+        formControlName="customerPhoneNo"
+        placeholder="*Customer Phone No"
+        pattern="[0-9]{10}"
+      />
+      <label for="customerPhoneNo">*Customer Phone No</label>
+    </div>
+
+
+    <button class="btn btn-primary">Save Customer</button>
+    <a class="btn btn-danger mx-3" routerLink="/customer/list">Cancel</a>
+  </form>
+</div>
+<!-- <hr>
+<app-customer-list></app-customer-list>  -->
+
+  
+</div>
+
+<!-- {{ this.customerForm.value | json }} -->
